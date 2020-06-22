@@ -1,0 +1,275 @@
+<html>
+	<head>
+		<title>Luis Tieh 2 (2013) - Remastered - by MatR</title>
+		<style>
+			body { margin: 0; }
+			canvas { display: block; background: #224488; }
+		</style>
+	</head>
+	<body>
+		<script src="js/three.min.js"></script>
+		<script>
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+			var movable = false;
+			   var texture2 = new THREE.TextureLoader().load( "img/image.png" );
+
+
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+			//intro
+			var geometry = new THREE.BoxGeometry();
+			var material = new THREE.MeshBasicMaterial( { map: texture2 } );
+			var cube = new THREE.Mesh( geometry, material );
+			scene.add( cube );
+
+			//skybox
+
+			var sky = new THREE.BoxGeometry();
+			var skym = new THREE.MeshBasicMaterial( { color: 0x224477, side: THREE.BackSide  } );
+			var skyc = new THREE.Mesh( sky, skym );
+			skyc.scale.x = 100;
+			skyc.scale.y = 100;
+			skyc.scale.z = 100;
+			
+
+			//sceneElems
+
+			var texture1 = new THREE.TextureLoader().load( "img/tex.png" );
+			var geometry1 = new THREE.BoxGeometry();
+			var material1 = new THREE.MeshBasicMaterial( { map: texture1 } );
+			var cube1 = new THREE.Mesh( geometry1, material1 );
+			cube1.position.x = 0;
+			cube1.position.y = 0;
+			cube1.position.z = 0;
+
+			var texture2 = new THREE.TextureLoader().load( "img/tex.png" );
+			var geometry2 = new THREE.BoxGeometry();
+			var material2 = new THREE.MeshBasicMaterial( { map: texture2 } );
+			var cube2 = new THREE.Mesh( geometry2, material2 );
+			cube2.position.x = 2;
+			cube2.position.y = 0;
+			cube2.position.z = 0;
+
+			var geometry3 = new THREE.BoxGeometry();
+			var material3 = new THREE.MeshBasicMaterial( { map: texture2 } );
+			var cube3 = new THREE.Mesh( geometry3, material3 );
+			cube3.position.x = 0;
+			cube3.position.y = 0;
+			cube3.position.z = -3;
+			cube3.scale.x = 5;
+
+			//piquets
+			var piquet1g = new THREE.CylinderGeometry( 0.005, 0.005, 0.5, 32 );
+			var piquet1m = new THREE.MeshBasicMaterial( {color: 0x402922} );
+			var piquet1 = new THREE.Mesh( piquet1g, piquet1m );
+			piquet1.position.x = 0;
+			piquet1.position.y = 0;
+			piquet1.position.z = 1.5;
+
+			var piquet2g = new THREE.CylinderGeometry( 0.005, 0.005, 0.5, 32 );
+			var piquet2m = new THREE.MeshBasicMaterial( {color: 0x402922} );
+			var piquet2 = new THREE.Mesh( piquet2g, piquet2m );
+			piquet2.position.x = 0;
+			piquet2.position.y = 0;
+			piquet2.position.z = 1.6;
+
+			var piquet3g = new THREE.BoxGeometry();
+			var piquet3m = new THREE.MeshBasicMaterial( {color: 0x402922} );
+			var piquet3 = new THREE.Mesh( piquet3g, piquet3m );
+			piquet3.position.x = 0;
+			piquet3.position.y = 0.25;
+			piquet3.position.z = 1.55;
+			piquet3.scale.z = 0.15;
+			piquet3.scale.y = 0.03;
+			piquet3.scale.x = 0.01;
+
+			var piquet4g = new THREE.CylinderGeometry( 0.005, 0.005, 0.5, 32 );
+			var piquet4m = new THREE.MeshBasicMaterial( {color: 0x402922} );
+			var piquet4 = new THREE.Mesh( piquet4g, piquet4m );
+			piquet4.position.x = 4;
+			piquet4.position.y = 0;
+			piquet4.position.z = 1.5;
+
+			var piquet5g = new THREE.CylinderGeometry( 0.005, 0.005, 0.5, 32 );
+			var piquet5m = new THREE.MeshBasicMaterial( {color: 0x402922} );
+			var piquet5 = new THREE.Mesh( piquet5g, piquet5m );
+			piquet5.position.x = 4;
+			piquet5.position.y = 0;
+			piquet5.position.z = 1.6;
+
+			var piquet6g = new THREE.BoxGeometry();
+			var piquet6m = new THREE.MeshBasicMaterial( {color: 0x402922} );
+			var piquet6 = new THREE.Mesh( piquet6g, piquet6m );
+			piquet6.position.x = 4;
+			piquet6.position.y = 0.25;
+			piquet6.position.z = 1.55;
+			piquet6.scale.z = 0.15;
+			piquet6.scale.y = 0.03;
+			piquet6.scale.x = 0.01;
+
+			var piquet7g = new THREE.CylinderGeometry( 0.005, 0.005, 0.5, 32 );
+			var piquet7m = new THREE.MeshBasicMaterial( {color: 0xffffff} );
+			var piquet7 = new THREE.Mesh( piquet7g, piquet7m );
+			piquet7.position.x = 2;
+			piquet7.position.y = 0.25;
+			piquet7.position.z = 1.5;
+			piquet7.scale.y = 12
+			piquet7.rotation.z = Math.PI/2
+
+			var piquet8g = new THREE.CylinderGeometry( 0.005, 0.005, 0.5, 32 );
+			var piquet8m = new THREE.MeshBasicMaterial( {color: 0xffffff} );
+			var piquet8 = new THREE.Mesh( piquet8g, piquet8m );
+			piquet8.position.x = 2;
+			piquet8.position.y = 0.25;
+			piquet8.position.z = 1.6;
+			piquet8.scale.y = 12
+			piquet8.rotation.z = Math.PI/2
+
+			var piquet3g = new THREE.BoxGeometry();
+			var piquet3m = new THREE.MeshBasicMaterial( {color: 0x402922} );
+			var piquet3 = new THREE.Mesh( piquet3g, piquet3m );
+			piquet3.position.x = 0;
+			piquet3.position.y = 0.25;
+			piquet3.position.z = 1.55;
+			piquet3.scale.z = 0.15;
+			piquet3.scale.y = 0.03;
+			piquet3.scale.x = 0.01;
+
+			var piquet9g = new THREE.CylinderGeometry( 0.005, 0.005, 0.5, 32 );
+			var piquet9m = new THREE.MeshBasicMaterial( {color: 0x402922} );
+			var piquet9 = new THREE.Mesh( piquet9g, piquet9m );
+			piquet9.position.x = 2;
+			piquet9.position.y = 0;
+			piquet9.position.z = 1.5;
+
+			var piquet10g = new THREE.CylinderGeometry( 0.005, 0.005, 0.5, 32 );
+			var piquet10m = new THREE.MeshBasicMaterial( {color: 0x402922} );
+			var piquet10 = new THREE.Mesh( piquet10g, piquet10m );
+			piquet10.position.x = 2;
+			piquet10.position.y = 0;
+			piquet10.position.z = 1.6;
+
+			var piquet11g = new THREE.BoxGeometry();
+			var piquet11m = new THREE.MeshBasicMaterial( {color: 0x402922} );
+			var piquet11 = new THREE.Mesh( piquet11g, piquet11m );
+			piquet11.position.x = 2;
+			piquet11.position.y = 0.25;
+			piquet11.position.z = 1.55;
+			piquet11.scale.z = 0.15;
+			piquet11.scale.y = 0.03;
+			piquet11.scale.x = 0.01;
+
+
+			//sol
+
+			var solg = new THREE.BoxGeometry();
+			var solm = new THREE.MeshBasicMaterial( { color: 0x444444 } );
+			var sola = new THREE.Mesh( solg, solm );
+			sola.position.x = 1;
+			sola.position.y = -1;
+			sola.position.z = -1;
+			sola.scale.x = 30;
+			sola.scale.z = 30;
+
+			//terre
+
+			var tg = new THREE.BoxGeometry();
+			var tm = new THREE.MeshBasicMaterial( { color: 0x228822 } );
+			var ta = new THREE.Mesh( tg, tm );
+			ta.position.x = 30;
+			ta.position.y = -1;
+			ta.position.z = -1;
+			ta.scale.x = 30;
+			ta.scale.z = 30;
+			
+
+			camera.position.z = 1;
+
+			var audio = new Audio('sons/bluethings.mp3');
+			audio.play();
+			var clicked = false;
+			document.addEventListener("click", function() {
+				audio.pause();
+				var audio1 = new Audio('sons/boycity.mp3');
+				if(clicked == false)
+					audio1.play();
+				clicked = true;
+				scene.remove(cube)
+				scene.add(cube1)
+				scene.add(cube2)
+				scene.add(cube3)
+				scene.add( skyc );
+				scene.add( sola );
+				scene.add( ta );
+				scene.add( piquet1 );
+				scene.add( piquet2 );
+				scene.add( piquet3 );
+				scene.add( piquet4 );
+				scene.add( piquet5 );
+				scene.add( piquet6 );
+				scene.add( piquet7 );
+				scene.add( piquet8 );
+				scene.add( piquet9 );
+				scene.add( piquet10 );
+				scene.add( piquet11 );
+				movable = true;
+			})
+
+			document.addEventListener("keydown", function(e) {
+				if(movable) {
+					console.log(camera.position.x)
+					console.log(cube1.position.x - cube1.scale.x/2);
+					console.log(cube1.position.x + cube1.scale.x/2);
+					console.log("----")
+					if(e.key == "ArrowLeft") {
+						camera.rotation.y += Math.PI/4;
+					}
+					if(e.key == "ArrowRight") {
+						camera.rotation.y -= Math.PI/4;
+					}
+					if(e.key == "ArrowUp") {
+						camera.translateZ( -0.1 );
+					}
+					if(e.key == " " && camera.position.y <= 0.2) {
+						camera.translateY( 0.3 )
+					}
+				}
+			})
+
+			var animate = function () {
+				requestAnimationFrame( animate );
+
+				//cube.rotation.x += 0.01;
+				//cube.rotation.y += 0.01;
+				if(camera.position.y > 0)
+					camera.translateY( -0.01 )
+
+				if(
+					(
+						(camera.position.x >= cube1.position.x - cube1.scale.x/2 - 0.1)
+						&&
+						(camera.position.x <= cube1.position.x + cube1.scale.x/2 + 0.1)
+						&& 
+						(camera.position.y >= cube1.position.y - cube1.scale.y/2 - 0.1)
+						&& 
+						(camera.position.y <= cube1.position.y + cube1.scale.y/2 + 0.1)
+						&&
+						(camera.position.z >= cube1.position.z - cube1.scale.z/2 - 0.1)
+						&&
+						(camera.position.z <= cube1.position.z + cube1.scale.z/2 + 0.1)
+					)
+				) {
+					camera.translateZ( 0.1 );
+				}
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+		</script>
+	</body>
+</html>
